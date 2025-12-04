@@ -204,6 +204,24 @@ main {
 
 /* 每个 section 像一条专辑色带 */
 
+/* Projects：橙 → 肉橙 渐变条 */
+#work.section {
+  background: linear-gradient(90deg, var(--orange), var(--salmon));
+  color: var(--white);
+}
+
+#work .section-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* About 用绿色，做一点中段的对比 */
+#about.section {
+  background: var(--mint);
+  color: var(--black);
+}
+
+/* 每个 section 像一条专辑色带 */
+
 #work.section {
   /* Projects：橙 → 肉橙 的渐变条 */
   background: linear-gradient(90deg, var(--orange), var(--salmon));

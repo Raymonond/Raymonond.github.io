@@ -156,9 +156,32 @@
     <span>Built with GitHub Pages</span>
   </footer>
 
-  <script>
+    <script>
     // 自动显示当前年份
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 滚动出现动效：section & 卡片淡入上浮
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    // 需要出现动效的元素：所有 section 和项目卡片
+    const revealEls = document.querySelectorAll(
+      'section.section, section.section-alt, .card'
+    );
+
+    revealEls.forEach((el) => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
   </script>
 </body>
 </html>

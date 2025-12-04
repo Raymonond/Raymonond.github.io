@@ -197,9 +197,36 @@ main {
 .section {
   margin-top: 40px;
   padding: 32px 26px 30px;
-  border-radius: var(--radius-xl);
+  border-radius: 18px;
   background: var(--white);
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+/* 每个 section 像一条专辑色带 */
+
+#work.section {
+  /* Projects：橙 → 肉橙 的渐变条 */
+  background: linear-gradient(90deg, var(--orange), var(--salmon));
+  color: var(--white);
+}
+
+#work .section-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Photography 用深蓝，已经是 section-alt 会套这里 */
+#photo.section-alt {
+  background: var(--blue);
+}
+
+/* About 用绿色，做一点对比 */
+#about.section {
+  background: var(--mint);
+}
+
+/* Contact 用肉橙，结尾一条暖色 */
+#contact.section-alt {
+  background: var(--salmon);
 }
 
 .section-alt {
@@ -451,8 +478,4 @@ main {
     height: 180px;
   }
 }
-
-/* Contact 区域使用一个专属色，让页面结尾像专辑最后一轨 */
-#contact.section-alt {
-  background: var(--salmon);
 }

@@ -196,7 +196,14 @@
     <span>Built with GitHub Pages</span>
   </footer>
 
-    <script>
+      <footer class="site-footer">
+    <span>© <span id="year"></span> Raymond Zhang</span>
+    <span class="footer-dot"></span>
+    <span>Built with GitHub Pages</span>
+  </footer>
+
+  <!-- 页面动效 + 自制 Lightbox -->
+  <script>
     // 自动显示当前年份
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -222,25 +229,46 @@
       el.classList.add('reveal');
       observer.observe(el);
     });
- <script>
-  // 点空白关闭 + ESC 关闭 Lightbox
-  document.addEventListener("click", function (e) {
-    const overlay = document.querySelector(".microlightbox-overlay");
-    if (overlay && e.target === overlay) {
-      overlay.remove();
-      document.body.classList.remove("microlightbox-noscroll");
-    }
-  });
 
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-      const overlay = document.querySelector(".microlightbox-overlay");
-      if (overlay) {
-        overlay.remove();
-        document.body.classList.remove("microlightbox-noscroll");
-      }
-    }
-  });
-</script>
+    // ===== 简易 Lightbox：点击摄影图片放大，点空白 / ESC 关闭 =====
+    const photoLinks = document.querySelectorAll('.photo-item a');
+
+    photoLinks.forEach((link) => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault(); // 阻止打开图片新页面
+
+        const src = this.getAttribute('href');
+
+        // 创建全屏遮罩
+        const overlay = document.createElement('div');
+        overlay.style.cssText =
+          'position:fixed;inset:0;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out;';
+
+        // 创建大图
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = this.querySelector('img')?.alt || '';
+        img.style.cssText =
+          'max-width:90vw;max-height:90vh;border-radius:18px;box-shadow:0 20px 80px rgba(0,0,0,0.8);';
+
+        overlay.appendChild(img);
+        document.body.appendChild(overlay);
+
+        // 点击遮罩任意空白处关闭
+        overlay.addEventListener('click', () => {
+          overlay.remove();
+        });
+
+        // ESC 关闭
+        const escHandler = (ev) => {
+          if (ev.key === 'Escape') {
+            overlay.remove();
+            document.removeEventListener('keydown', escHandler);
+          }
+        };
+        document.addEventListener('keydown', escHandler);
+      });
+    });
+  </script>
 </body>
 </html>

@@ -222,6 +222,25 @@
       el.classList.add('reveal');
       observer.observe(el);
     });
-  </script>
+ <script>
+  // 点空白关闭 + ESC 关闭 Lightbox
+  document.addEventListener("click", function (e) {
+    const overlay = document.querySelector(".microlightbox-overlay");
+    if (overlay && e.target === overlay) {
+      overlay.remove();
+      document.body.classList.remove("microlightbox-noscroll");
+    }
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      const overlay = document.querySelector(".microlightbox-overlay");
+      if (overlay) {
+        overlay.remove();
+        document.body.classList.remove("microlightbox-noscroll");
+      }
+    }
+  });
+</script>
 </body>
 </html>

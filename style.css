@@ -562,3 +562,30 @@ main {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* 中文与英文内容之间自动拉开视觉距离 */
+.about-text p,
+.hero-subtitle,
+.card-text {
+  line-height: 1.75;
+}
+
+.about-text p br + br {
+  line-height: 2.2; /* 双语段落之间加更多呼吸空间 */
+}
+
+/* 自定义 project tag 颜色 */
+.card-tag[data-type="early"] {
+  background: rgba(1, 17, 151, 0.36);
+  color: #c4d1ff;
+}
+
+.card-tag[data-type="grad"] {
+  background: rgba(251, 7, 0, 0.35);
+  color: #ffd1ce;
+}
+
+.card-tag[data-type="photo"] {
+  background: rgba(83, 215, 130, 0.35);
+  color: #d8ffe8;
+}

@@ -4,8 +4,14 @@
   <meta charset="UTF-8" />
   <title>Raymond Zhang | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- 这一行非常关键：链接到 style.css -->
+
+  <!-- 你的主样式 -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Lightbox CSS & JS（新增部分） -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/microlightbox/dist/microlightbox.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/microlightbox/dist/microlightbox.min.js"></script>
+
 </head>
 <body>
   <header class="site-header">
@@ -101,34 +107,36 @@
   </div>
 
   <div class="photo-grid">
-    <figure class="photo-item">
+
+  <figure class="photo-item">
+    <a href="images/portrait1.jpg" class="lightbox">
       <img src="images/portrait1.jpg" alt="Portrait with guitar on rooftop" />
-      <figcaption>
-        Portrait Series｜人像系列 · Rooftop moment
-      </figcaption>
-    </figure>
+    </a>
+    <figcaption>Portrait Series｜人像系列 · Rooftop moment</figcaption>
+  </figure>
 
-    <figure class="photo-item">
-      <img src="images/portrait2.jpg" alt="Portrait on the hill with sky behind" />
-      <figcaption>
-        Portrait Series｜人像系列 · Hilltop light
-      </figcaption>
-    </figure>
+  <figure class="photo-item">
+    <a href="images/portrait2.jpg" class="lightbox">
+      <img src="images/portrait2.jpg" alt="Portrait on the hill" />
+    </a>
+    <figcaption>Portrait Series｜人像系列 · Hilltop light</figcaption>
+  </figure>
 
-    <figure class="photo-item">
-      <img src="images/portrait3.jpg" alt="Child portrait in natural light" />
-      <figcaption>
-        Portrait Series｜人像系列 · Childhood gaze
-      </figcaption>
-    </figure>
+  <figure class="photo-item">
+    <a href="images/portrait3.jpg" class="lightbox">
+      <img src="images/portrait3.jpg" alt="Child portrait" />
+    </a>
+    <figcaption>Portrait Series｜人像系列 · Childhood gaze</figcaption>
+  </figure>
 
-    <figure class="photo-item">
+  <figure class="photo-item">
+    <a href="images/portrait4.jpg" class="lightbox">
       <img src="images/portrait4.jpg" alt="Atmospheric portrait" />
-      <figcaption>
-        Portrait Series｜人像系列 · Atmospheric frame
-      </figcaption>
-    </figure>
-  </div>
+    </a>
+    <figcaption>Portrait Series｜人像系列 · Atmospheric frame</figcaption>
+  </figure>
+
+</div>
 </section>
 
     <!-- About 区域 -->

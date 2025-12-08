@@ -601,3 +601,11 @@ main {
     font-size: 1.1rem;
   }
 }
+/* 把 Projects 这块从白色胶囊里“抽出来” */
+.section.section-projects {
+  background: transparent;   /* 去掉白底 */
+  box-shadow: none;          /* 去掉阴影 */
+  border-radius: 0;          /* 去掉圆角 */
+  margin-top: 3rem;          /* 和 Hero 保持一点距离 */
+  padding-top: 3rem;
+}

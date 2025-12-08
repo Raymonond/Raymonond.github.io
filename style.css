@@ -1,24 +1,25 @@
 :root {
-  /* 主色：参考 Kanye 专辑的大色块 */
-  --blue: #011197;        /* 深蓝 */
-  --orange: #fb0700;      /* 鲜红橙 */
-  --mint: #53d782;        /* 绿色 */
-  --salmon: #f58b57;      /* 肉橙 */
-  --light: #cadfdf;       /* 冷浅灰蓝 */
+  /* 颜色系统：黑 / 白 / 金 + 暖灰背景 */
+  --bg-page: #f4f2ec;
+  --bg-surface: #ffffff;
+  --bg-hero: #0b0b0d;
 
-  --black: #101010;
+  --text-main: #111111;
+  --text-muted: #747474;
+
+  --black: #000000;
   --white: #ffffff;
 
-  /* 整体背景用浅色，页面被颜色“铺满”的感觉更强 */
-  --bg: var(--light);
-  --text-main: #161616;
-  --text-muted: #666a70;
+  --gold: #c5a76a;
+  --gold-soft: #e3d2a4;
+  --border-subtle: rgba(0, 0, 0, 0.06);
 
-  --radius-xl: 24px;
+  /* 圆角 & 阴影 */
+  --radius-xl: 26px;
   --radius-lg: 18px;
   --radius-md: 12px;
 
-  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.12);
+  --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.06);
 }
 
 *,
@@ -36,17 +37,17 @@ body {
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
     "Segoe UI", Roboto, sans-serif;
-  background: var(--bg);
+  background: var(--bg-page);
   color: var(--text-main);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 /* 布局基础 */
 
 main {
-  max-width: 1080px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 96px 20px 72px;
+  padding: 112px 20px 80px;
 }
 
 /* 顶部导航 */
@@ -55,14 +56,14 @@ main {
   position: sticky;
   top: 0;
   z-index: 20;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
   background: linear-gradient(
     to bottom,
-    rgba(244, 244, 244, 0.96),
-    rgba(244, 244, 244, 0.9)
+    rgba(244, 242, 236, 0.96),
+    rgba(244, 242, 236, 0.9)
   );
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  padding: 14px 24px;
+  padding: 14px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -77,13 +78,13 @@ main {
 .logo-mark {
   width: 28px;
   height: 28px;
-  border-radius: 8px;
-  background: radial-gradient(circle at 25% 25%, var(--orange), var(--black));
+  border-radius: 10px;
+  background: radial-gradient(circle at 20% 0%, #fdf6dd, #2a2517);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: var(--white);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -92,21 +93,21 @@ main {
 .logo-text {
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 24px;
 }
 
 .site-nav a {
-  font-size: 14px;
+  font-size: 13px;
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   color: var(--text-muted);
   position: relative;
   padding-bottom: 4px;
@@ -119,8 +120,8 @@ main {
   bottom: 0;
   width: 0;
   height: 1.5px;
-  background: linear-gradient(90deg, var(--orange), var(--blue));
-  transition: width 0.26s ease;
+  background: var(--gold);
+  transition: width 0.24s ease;
 }
 
 .site-nav a:hover::after {
@@ -135,15 +136,11 @@ main {
 
 .hero {
   margin-top: 32px;
-  padding: 40px 32px 32px;
+  padding: 40px 40px 32px;
   border-radius: 32px;
-  /* 像专辑封面一样的强烈渐变块 */
-  background: linear-gradient(
-      120deg,
-      var(--orange) 0%,
-      var(--blue) 55%,
-      var(--mint) 100%
-    );
+  background:
+    radial-gradient(circle at 0% 0%, rgba(197, 167, 106, 0.24), transparent 55%),
+    linear-gradient(135deg, #101015, #050506);
   color: var(--white);
   display: flex;
   flex-direction: column;
@@ -151,22 +148,22 @@ main {
 }
 
 .hero-text {
-  max-width: 620px;
+  max-width: 580px;
 }
 
 .hero-label {
   font-size: 12px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  opacity: 0.72;
-  margin-bottom: 8px;
+  opacity: 0.7;
+  margin-bottom: 10px;
 }
 
 .hero h1 {
-  font-size: clamp(32px, 5vw, 48px);
-  letter-spacing: 0.06em;
+  font-size: clamp(32px, 5vw, 50px);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin: 0 0 10px;
+  margin: 0 0 12px;
 }
 
 .hero-subtitle {
@@ -176,83 +173,39 @@ main {
 }
 
 .hero-tagline {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  padding: 12px 16px;
-  font-size: 12px;
-  letter-spacing: 0.15em;
+  align-self: flex-start;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 8px 18px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   background: linear-gradient(
     90deg,
-    rgba(255, 138, 0, 0.12),
-    rgba(0, 91, 255, 0.18)
+    rgba(197, 167, 106, 0.3),
+    rgba(255, 255, 255, 0.05)
   );
 }
 
 /* 通用 section 样式 */
 
 .section {
-  margin-top: 40px;
+  margin-top: 48px;
   padding: 32px 26px 30px;
-  border-radius: 18px;
-  background: var(--white);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
-}
-
-/* 每个 section 像一条专辑色带 */
-
-/* Projects：橙 → 肉橙 渐变条 */
-#work.section {
-  background: linear-gradient(90deg, var(--orange), var(--salmon));
-  color: var(--white);
-}
-
-#work .section-subtitle {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-/* About 用绿色，做一点中段的对比 */
-#about.section {
-  background: var(--mint);
-  color: var(--black);
-}
-
-/* 每个 section 像一条专辑色带 */
-
-#work.section {
-  /* Projects：橙 → 肉橙 的渐变条 */
-  background: linear-gradient(90deg, var(--orange), var(--salmon));
-  color: var(--white);
-}
-
-#work .section-subtitle {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-/* Photography 用深蓝，已经是 section-alt 会套这里 */
-#photo.section-alt {
-  background: var(--blue);
-}
-
-/* About 用绿色，做一点对比 */
-#about.section {
-  background: var(--mint);
-}
-
-/* Contact 用肉橙，结尾一条暖色 */
-#contact.section-alt {
-  background: var(--salmon);
+  border-radius: var(--radius-xl);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
 }
 
 .section-alt {
-  background: var(--blue);
-  color: var(--white);
-}
-.section-alt .section-subtitle {
-  color: rgba(255, 255, 255, 0.78);
+  margin-top: 48px;
+  padding: 32px 26px 30px;
+  border-radius: var(--radius-xl);
+  background: #111111;
+  color: rgba(245, 245, 245, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.65);
 }
 
 .section-header {
@@ -260,23 +213,23 @@ main {
 }
 
 .section h2 {
-  margin: 0 0 6px;
-  font-size: 20px;
-  letter-spacing: 0.16em;
+  margin: 0 0 8px;
+  font-size: 19px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
 .section-subtitle {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-muted);
 }
 
 .section-alt .section-subtitle {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(230, 230, 230, 0.72);
 }
 
-/* 项目 Card */
+/* 项目 Cards */
 
 .card-grid {
   display: grid;
@@ -285,77 +238,97 @@ main {
 }
 
 .card {
-  background: #101010;
-  color: var(--white);
+  background: #111111;
+  color: rgba(245, 245, 245, 0.98);
   border-radius: var(--radius-lg);
-  padding: 16px 16px 18px;
+  padding: 18px 18px 20px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.7);
+  border-color: rgba(197, 167, 106, 0.7);
 }
 
 .card-tag {
   align-self: flex-start;
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  font-size: 10px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(255, 138, 0, 0.12);
-  color: #ffd5a1;
-}
-
-.card-tag-alt {
-  background: rgba(0, 91, 255, 0.15);
-  color: #c8d8ff;
+  background: rgba(197, 167, 106, 0.12);
+  color: #f3e4bc;
 }
 
 .card-title {
   margin: 4px 0 2px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .card-text {
   margin: 0;
   font-size: 13px;
-  opacity: 0.92;
+  opacity: 0.9;
 }
 
 .card-meta {
-  margin: 4px 0 0;
-  font-size: 12px;
-  opacity: 0.7;
+  margin: 6px 0 0;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.75;
 }
 
-/* 摄影区域 */
+/* 摄影相册区域 */
+
+#photo.section-alt {
+  /* Photography 区域用稍微浅一点的深色 */
+  background: #151515;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.7);
+}
 
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .photo-item {
   margin: 0;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  background: #000000;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: #050505;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .photo-item img {
   display: block;
   width: 100%;
-  height: 160px;
+  height: 170px;
   object-fit: cover;
-  filter: saturate(1.2); /* 稍微更艳一点 */
+  filter: saturate(1.05);
 }
 
 .photo-item figcaption {
-  padding: 8px 10px 10px;
+  padding: 10px 12px 12px;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(245, 245, 245, 0.9);
+}
+
+.photo-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
+  border-color: rgba(197, 167, 106, 0.8);
 }
 
 /* About 区域 */
@@ -363,12 +336,12 @@ main {
 .about-layout {
   display: grid;
   grid-template-columns: 2fr 1.2fr;
-  gap: 24px;
+  gap: 28px;
 }
 
 .about-text p {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-size: 14px;
 }
 
@@ -390,15 +363,20 @@ main {
 
 .about-label {
   text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 11px;
+  letter-spacing: 0.18em;
+  font-size: 10px;
   color: var(--text-muted);
 }
 
 /* Contact 区域 */
 
+#contact.section-alt {
+  background: #111111;
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.7);
+}
+
 .contact-block {
-  padding: 10px 0 0;
+  padding: 8px 0 0;
   font-size: 14px;
 }
 
@@ -412,20 +390,20 @@ main {
 }
 
 .contact-list a {
-  color: var(--orange);
+  color: var(--gold);
   text-decoration: none;
   border-bottom: 1px solid transparent;
 }
 
 .contact-list a:hover {
-  border-bottom-color: var(--orange);
+  border-bottom-color: var(--gold);
 }
 
 /* 页脚 */
 
 .site-footer {
-  max-width: 1080px;
-  margin: 24px auto 24px;
+  max-width: 960px;
+  margin: 26px auto 26px;
   padding: 0 20px;
   font-size: 12px;
   display: flex;
@@ -442,27 +420,37 @@ main {
   background: var(--text-muted);
 }
 
-/* 响应式布局（小屏幕适配） */
+/* 滚动出现动画 */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 响应式布局 */
 
 @media (max-width: 900px) {
   main {
-    padding-top: 80px;
+    padding-top: 96px;
   }
 
   .site-header {
-    padding-inline: 16px;
-  }
-
-  .site-nav {
-    gap: 12px;
+    padding-inline: 18px;
   }
 
   .hero {
-    padding: 28px 20px 22px;
+    padding: 30px 24px 24px;
   }
 
-  .section {
-    padding-inline: 18px;
+  .section,
+  .section-alt {
+    padding-inline: 20px;
   }
 
   .card-grid {
@@ -485,107 +473,18 @@ main {
 
 @media (max-width: 600px) {
   .site-nav {
-    display: none; /* 最简单处理：小屏隐藏导航，之后如果你想要汉堡菜单可以再加 */
+    display: none; /* 先简单隐藏，小屏就直接上下滑动浏览 */
   }
 
   .card-grid {
     grid-template-columns: 1fr;
   }
 
-  .photo-item img {
-    height: 180px;
+  .photo-grid {
+    grid-template-columns: 1fr;
   }
-}
-}
 
-/* === Enhanced effects pack === */
-
-/* 1. Hero 视差效果：背景固定，滚动时有专辑封面质感 */
-.hero {
-  background-attachment: fixed;
-}
-
-/* 2. 项目卡片 hover 微浮起 */
-.card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.32);
-}
-
-/* 3. 导航下划线：多色渐变动画 */
-.site-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 1.5px;
-  background: linear-gradient(90deg, var(--orange), var(--blue), var(--mint));
-  background-size: 200% 100%;
-  transition: width 0.3s ease, background-position 0.3s ease;
-}
-
-.site-nav a:hover::after {
-  width: 100%;
-  background-position: 100% 0;
-}
-
-/* 4. Photography：图片 hover 略放大 + 提亮 + 加饱和 */
-.photo-item img {
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.photo-item:hover img {
-  transform: scale(1.05);
-  filter: brightness(1.15) saturate(1.3);
-}
-
-/* 5. 英文名字 Logo 化：加大字距 + 细描边 */
-.hero h1 {
-  letter-spacing: 0.25em;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.35);
-  text-transform: uppercase;
-}
-
-/* 6. 滚动出现动效：所有 section / 卡片轻微上浮 & 淡入 */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  will-change: opacity, transform;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* 中文与英文内容之间自动拉开视觉距离 */
-.about-text p,
-.hero-subtitle,
-.card-text {
-  line-height: 1.75;
-}
-
-.about-text p br + br {
-  line-height: 2.2; /* 双语段落之间加更多呼吸空间 */
-}
-
-/* 自定义 project tag 颜色 */
-.card-tag[data-type="early"] {
-  background: rgba(1, 17, 151, 0.36);
-  color: #c4d1ff;
-}
-
-.card-tag[data-type="grad"] {
-  background: rgba(251, 7, 0, 0.35);
-  color: #ffd1ce;
-}
-
-.card-tag[data-type="photo"] {
-  background: rgba(83, 215, 130, 0.35);
-  color: #d8ffe8;
+  .photo-item img {
+    height: 190px;
+  }
 }

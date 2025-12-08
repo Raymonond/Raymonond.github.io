@@ -5,20 +5,174 @@
   <title>Raymond Zhang | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- 你的主样式 -->
+  <!-- 主样式 -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Lightbox CSS & JS（新增部分） -->
+  <!-- 手写风字体 -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" />
+
+  <!-- Lightbox CSS & JS（目前可以保留） -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/microlightbox/dist/microlightbox.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/microlightbox/dist/microlightbox.min.js"></script>
 
+  <!-- 额外样式：Projects Editorial + 日式风 + 品牌签名 -->
+  <style>
+    /* 顶部品牌签名 */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .brand-script {
+      font-family: "Mrs Saint Delafield", system-ui, -apple-system, sans-serif;
+      font-size: 1.6rem;
+      line-height: 1;
+      color: #111;
+    }
+
+    .brand-sub {
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      color: #111;
+    }
+
+    /* 如果原本 .logo 有样式，可以弱化一下 */
+    .logo-mark, .logo-text {
+      display: none;
+    }
+
+    /* Projects 区：Editorial + 日式留白 */
+    .section-projects {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 5rem;
+    }
+
+    .section-projects .section-heading {
+      margin-bottom: 3rem;
+    }
+
+    .section-projects .section-heading h2 {
+      font-size: 0.95rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .section-projects .section-heading p {
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      color: rgba(0, 0, 0, 0.55);
+    }
+
+    .projects-list {
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .project-item {
+      padding: 2.7rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      opacity: 0;              /* 给 reveal 动效用 */
+      transform: translateY(12px);
+      transition: all 0.6s ease;
+    }
+
+    .project-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .project-tag {
+      font-weight: 500;
+    }
+
+    .project-year {
+      opacity: 0.8;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      font-weight: 600;
+      color: #111;
+      margin: 0 0 0.85rem;
+    }
+
+    .project-title-cn {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.68);
+    }
+
+    .project-desc,
+    .project-desc-cn {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(0, 0, 0, 0.7);
+      max-width: 46rem;
+    }
+
+    .project-desc-cn {
+      margin-top: 0.4rem;
+      color: rgba(0, 0, 0, 0.62);
+    }
+
+    .project-link {
+      display: inline-block;
+      margin-top: 1.3rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+      padding-bottom: 0.15rem;
+      color: rgba(0, 0, 0, 0.75);
+    }
+
+    .project-link:hover {
+      border-bottom-color: #000;
+      color: #000;
+    }
+
+    @media (max-width: 720px) {
+      .section-projects {
+        padding-inline: 1.25rem;
+      }
+
+      .project-item {
+        padding: 2rem 0;
+      }
+
+      .project-title {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
 </head>
-<body>
+
+<body id="top">
   <header class="site-header">
-    <div class="logo">
-      <span class="logo-mark">RZ</span>
-      <span class="logo-text">Raymond Zhang</span>
-    </div>
+    <!-- 新的签名 Logo -->
+    <a href="#top" class="brand">
+      <span class="brand-script">Raymond Zhang</span>
+      <span class="brand-sub">张鹭依</span>
+    </a>
+
     <nav class="site-nav">
       <a href="#work">Projects</a>
       <a href="#photo">Photography</a>
@@ -29,7 +183,7 @@
 
   <main>
     <!-- Hero 区域 -->
-    <section class="hero">
+    <section class="hero" id="work">
       <div class="hero-text">
         <p class="hero-label">Portfolio</p>
         <h1>Raymond Zhang</h1>
@@ -43,113 +197,114 @@
       </div>
     </section>
 
-  <section id="projects" class="section section-projects">
-  <div class="section-heading">
-    <h2>PROJECTS</h2>
-    <p>三个对我来说最重要的创作阶段 | Three major stages of my artistic practice</p>
-  </div>
-
-  <div class="projects-list">
-    <!-- Early Works -->
-    <article class="project-item">
-      <div class="project-meta">
-        <span class="project-tag">EARLY WORKS</span>
-        <span class="project-year">2017–2020 · Drawing &amp; Illustration</span>
+    <!-- Projects 区域：Editorial + 日式 -->
+    <section id="projects" class="section section-projects">
+      <div class="section-heading">
+        <h2>PROJECTS</h2>
+        <p>三个对我来说最重要的创作阶段 | Three major stages of my artistic practice</p>
       </div>
-      <h3 class="project-title">
-        Early Works Portfolio<br>
-        <span class="project-title-cn">早期绘画与角色创作</span>
-      </h3>
-      <p class="project-desc">
-        A collection of early drawings, character designs and observational sketches that
-        formed the foundation of my visual language and the way I approach composition,
-        colour and anatomy.
-      </p>
-      <p class="project-desc-cn">
-        早期的绘画合集，包含角色设定、观察速写与写实练习。通过这些作品建立起对色彩与构图的敏感度，也是之后创作中叙事与人物塑造的基础。
-      </p>
-      <a href="#early-works" class="project-link">View project</a>
-    </article>
 
-    <!-- Graduation -->
-    <article class="project-item">
-      <div class="project-meta">
-        <span class="project-tag">GRADUATION PROJECT · AUCKLAND</span>
-        <span class="project-year">2024 · Installation &amp; Photography</span>
-      </div>
-      <h3 class="project-title">
-        Graduation Project – Auckland<br>
-        <span class="project-title-cn">毕业作品 · 奥克兰</span>
-      </h3>
-      <p class="project-desc">
-        A visual project exploring urban memory, emotions and spatial atmosphere through
-        photography and installation. Part of this work was reposted by Auckland Art Gallery
-        on their official Instagram.
-      </p>
-      <p class="project-desc-cn">
-        通过摄影与装置捕捉城市中的记忆碎片、情绪与空间气氛。作品的一部分曾被奥克兰美术馆官方 Instagram 转发。
-      </p>
-      <a href="#graduation" class="project-link">View project</a>
-    </article>
+      <div class="projects-list">
+        <!-- Early Works -->
+        <article class="project-item">
+          <div class="project-meta">
+            <span class="project-tag">EARLY WORKS</span>
+            <span class="project-year">2017–2020 · Drawing &amp; Illustration</span>
+          </div>
+          <h3 class="project-title">
+            Early Works Portfolio<br>
+            <span class="project-title-cn">早期绘画与角色创作</span>
+          </h3>
+          <p class="project-desc">
+            A collection of early drawings, character designs and observational sketches that
+            formed the foundation of my visual language and the way I approach composition,
+            colour and anatomy.
+          </p>
+          <p class="project-desc-cn">
+            早期的绘画合集，包含角色设定、观察速写与写实练习。通过这些作品建立起对色彩与构图的敏感度，也是之后创作中叙事与人物塑造的基础。
+          </p>
+          <a href="#early-works" class="project-link">View project</a>
+        </article>
 
-    <!-- Night Walk Series -->
-    <article class="project-item">
-      <div class="project-meta">
-        <span class="project-tag">PHOTOGRAPHY · ONGOING SERIES</span>
-        <span class="project-year">Ongoing · Street &amp; Installation Photography</span>
+        <!-- Graduation -->
+        <article class="project-item">
+          <div class="project-meta">
+            <span class="project-tag">GRADUATION PROJECT · AUCKLAND</span>
+            <span class="project-year">2024 · Installation &amp; Photography</span>
+          </div>
+          <h3 class="project-title">
+            Graduation Project – Auckland<br>
+            <span class="project-title-cn">毕业作品 · 奥克兰</span>
+          </h3>
+          <p class="project-desc">
+            A visual project exploring urban memory, emotions and spatial atmosphere through
+            photography and installation. Part of this work was reposted by Auckland Art Gallery
+            on their official Instagram.
+          </p>
+          <p class="project-desc-cn">
+            通过摄影与装置捕捉城市中的记忆碎片、情绪与空间气氛。作品的一部分曾被奥克兰美术馆官方 Instagram 转发。
+          </p>
+          <a href="#graduation" class="project-link">View project</a>
+        </article>
+
+        <!-- Night Walk Series -->
+        <article class="project-item">
+          <div class="project-meta">
+            <span class="project-tag">PHOTOGRAPHY · ONGOING SERIES</span>
+            <span class="project-year">Ongoing · Street &amp; Installation Photography</span>
+          </div>
+          <h3 class="project-title">
+            Night Walk &amp; City Fragments<br>
+            <span class="project-title-cn">夜行与城市碎片</span>
+          </h3>
+          <p class="project-desc">
+            Ongoing photographic series documenting colour, light and fleeting emotions in the
+            city. The works focus on high contrast lighting, minimal compositions and the
+            atmosphere of liminal spaces.
+          </p>
+          <p class="project-desc-cn">
+            持续进行中的摄影系列，以城市中的色块、光线与短暂情绪为主题，透过高对比的光线与极简构图，记录那些介于日常与虚无之间的边界空间。
+          </p>
+          <a href="#night-walk" class="project-link">View project</a>
+        </article>
       </div>
-      <h3 class="project-title">
-        Night Walk &amp; City Fragments<br>
-        <span class="project-title-cn">夜行与城市碎片</span>
-      </h3>
-      <p class="project-desc">
-        Ongoing photographic series documenting colour, light and fleeting emotions in the
-        city. The works focus on high contrast lighting, minimal compositions and the
-        atmosphere of liminal spaces.
-      </p>
-      <p class="project-desc-cn">
-        持续进行中的摄影系列，以城市中的色块、光线与短暂情绪为主题，透过高对比的光线与极简构图，记录那些介于日常与虚无之间的边界空间。
-      </p>
-      <a href="#night-walk" class="project-link">View project</a>
-    </article>
-  </div>
-</section>
+    </section>
 
     <!-- 摄影区域 -->
     <section id="photo" class="section section-alt">
-  <div class="section-header">
-    <h2>Portraits & Photography</h2>
-    <p class="section-subtitle">
-      Selected albums｜人像与摄影作品相册
-    </p>
-  </div>
+      <div class="section-header">
+        <h2>Portraits & Photography</h2>
+        <p class="section-subtitle">
+          Selected albums｜人像与摄影作品相册
+        </p>
+      </div>
 
-  <div class="photo-grid">
-    <!-- 相册 1：街拍 Street -->
-    <figure class="photo-item" data-album="street">
-      <img src="images/portrait2.jpg" alt="Street photography album cover" />
-      <figcaption>
-        Street Photography｜街拍相册
-      </figcaption>
-    </figure>
+      <div class="photo-grid">
+        <!-- 相册 1：街拍 Street -->
+        <figure class="photo-item" data-album="street">
+          <img src="images/portrait2.jpg" alt="Street photography album cover" />
+          <figcaption>
+            Street Photography｜街拍相册
+          </figcaption>
+        </figure>
 
-    <!-- 相册 2：毕业作品 Graduation -->
-    <figure class="photo-item" data-album="grad">
-      <img src="images/portrait1.jpg" alt="Graduation project documentation" />
-      <figcaption>
-        Graduation Works｜毕业作品相册
-      </figcaption>
-    </figure>
+        <!-- 相册 2：毕业作品 Graduation -->
+        <figure class="photo-item" data-album="grad">
+          <img src="images/portrait1.jpg" alt="Graduation project documentation" />
+          <figcaption>
+            Graduation Works｜毕业作品相册
+          </figcaption>
+        </figure>
 
-    <!-- 相册 3：日常 Daily -->
-    <figure class="photo-item" data-album="daily">
-      <img src="images/portrait3.jpg" alt="Daily life photography" />
-      <figcaption>
-        Daily Moments｜日常影像相册
-      </figcaption>
-    </figure>
-  </div>
-</section>
+        <!-- 相册 3：日常 Daily -->
+        <figure class="photo-item" data-album="daily">
+          <img src="images/portrait3.jpg" alt="Daily life photography" />
+          <figcaption>
+            Daily Moments｜日常影像相册
+          </figcaption>
+        </figure>
+      </div>
+    </section>
 
     <!-- About 区域 -->
     <section id="about" class="section">
@@ -158,25 +313,25 @@
         <p class="section-subtitle">一些简单的自我介绍</p>
       </div>
       <div class="about-layout">
-       <div class="about-text">
-  <p>
-    I am Raymond Zhang, a visual artist and photographer based in Auckland.
-    My practice began with drawing and character design, and gradually transitioned
-    into photography, installation and contemporary visual storytelling.
-    <br><br>
-    我是 Raymond Zhang，居住在奥克兰的艺术创作者与摄影师。
-    起点是绘画与角色设计，后来逐步转向摄影、装置与当代视觉叙事。
-  </p>
+        <div class="about-text">
+          <p>
+            I am Raymond Zhang, a visual artist and photographer based in Auckland.
+            My practice began with drawing and character design, and gradually transitioned
+            into photography, installation and contemporary visual storytelling.
+            <br><br>
+            我是 Raymond Zhang，居住在奥克兰的艺术创作者与摄影师。
+            起点是绘画与角色设计，后来逐步转向摄影、装置与当代视觉叙事。
+          </p>
 
-  <p>
-    My work explores fragments of the city, personal emotion, and the atmosphere of
-    transitional spaces. I use saturated colour, minimal composition and dramatic
-    lighting to capture fleeting moods that might otherwise be overlooked.
-    <br><br>
-    我的创作关注城市碎片、个人情绪与空间氛围，
-    通过高饱和色块与极简构图，把那些城市中稍纵即逝的瞬间凝结成可观看的图像。
-  </p>
-</div>
+          <p>
+            My work explores fragments of the city, personal emotion, and the atmosphere of
+            transitional spaces. I use saturated colour, minimal composition and dramatic
+            lighting to capture fleeting moods that might otherwise be overlooked.
+            <br><br>
+            我的创作关注城市碎片、个人情绪与空间氛围，
+            通过高饱和色块与极简构图，把那些城市中稍纵即逝的瞬间凝结成可观看的图像。
+          </p>
+        </div>
         <ul class="about-list">
           <li><span class="about-label">Based in</span><span>Auckland, New Zealand</span></li>
           <li><span class="about-label">Focus</span><span>Photography · Installation · Visual story</span></li>
@@ -195,14 +350,13 @@
         <p>你可以通过邮箱或社交平台找到我：</p>
         <ul class="contact-list">
           <li>Email：<a href="mailto:youremail@example.com">youremail@example.com</a></li>
-          <!-- 有的话可以之后改成你的 IG 或其他链接 -->
           <li>Instagram：<span>@your_instagram</span></li>
         </ul>
       </div>
     </section>
   </main>
 
-    <footer class="site-footer">
+  <footer class="site-footer">
     <span>© <span id="year"></span> Raymond Zhang</span>
     <span class="footer-dot"></span>
     <span>Built with GitHub Pages</span>
@@ -213,7 +367,7 @@
     // 自动显示当前年份
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // 滚动出现动效：section & 卡片淡入上浮
+    // 滚动出现动效：section & project-item 淡入上浮
     const observer = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
@@ -227,7 +381,7 @@
     );
 
     const revealEls = document.querySelectorAll(
-      'section.section, section.section-alt, .card'
+      'section.section, section.section-alt, .project-item'
     );
 
     revealEls.forEach((el) => {
@@ -236,8 +390,6 @@
     });
 
     // ===== 相册 Lightbox：三个相册，每个相册多张图，可左右切换 =====
-
-    // 这里先用你现有的图片做例子，以后你有更多图可以直接在数组里加
     const albums = {
       street: [
         'images/portrait2.jpg',
@@ -262,20 +414,16 @@
 
         let currentIndex = 0;
 
-        // 创建遮罩
         const overlay = document.createElement('div');
         overlay.style.cssText =
           'position:fixed;inset:0;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:9999;';
 
-        // 图片容器
         const img = document.createElement('img');
         img.style.cssText =
           'max-width:90vw;max-height:90vh;border-radius:18px;box-shadow:0 20px 80px rgba(0,0,0,0.8);';
         img.src = images[currentIndex];
-
         overlay.appendChild(img);
 
-        // 左右切换按钮
         const makeArrow = (side) => {
           const btn = document.createElement('div');
           btn.textContent = side === 'left' ? '‹' : '›';
@@ -288,7 +436,6 @@
 
         const leftArrow = makeArrow('left');
         const rightArrow = makeArrow('right');
-
         overlay.appendChild(leftArrow);
         overlay.appendChild(rightArrow);
 
@@ -308,7 +455,6 @@
           showImage();
         });
 
-        // 点击空白关闭
         overlay.addEventListener('click', (e) => {
           if (e.target === overlay) {
             overlay.remove();
@@ -316,7 +462,6 @@
           }
         });
 
-        // ESC & 方向键
         const escHandler = (ev) => {
           if (ev.key === 'Escape') {
             overlay.remove();

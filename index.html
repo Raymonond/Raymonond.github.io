@@ -102,41 +102,35 @@
   <div class="section-header">
     <h2>Portraits & Photography</h2>
     <p class="section-subtitle">
-      Selected portraits and photographic works｜人像与摄影作品选集
+      Selected albums｜人像与摄影作品相册
     </p>
   </div>
 
   <div class="photo-grid">
+    <!-- 相册 1：街拍 Street -->
+    <figure class="photo-item" data-album="street">
+      <img src="images/portrait2.jpg" alt="Street photography album cover" />
+      <figcaption>
+        Street Photography｜街拍相册
+      </figcaption>
+    </figure>
 
-  <figure class="photo-item">
-    <a href="images/portrait1.jpg" class="lightbox">
-      <img src="images/portrait1.jpg" alt="Portrait with guitar on rooftop" />
-    </a>
-    <figcaption>Portrait Series｜人像系列 · Rooftop moment</figcaption>
-  </figure>
+    <!-- 相册 2：毕业作品 Graduation -->
+    <figure class="photo-item" data-album="grad">
+      <img src="images/portrait1.jpg" alt="Graduation project documentation" />
+      <figcaption>
+        Graduation Works｜毕业作品相册
+      </figcaption>
+    </figure>
 
-  <figure class="photo-item">
-    <a href="images/portrait2.jpg" class="lightbox">
-      <img src="images/portrait2.jpg" alt="Portrait on the hill" />
-    </a>
-    <figcaption>Portrait Series｜人像系列 · Hilltop light</figcaption>
-  </figure>
-
-  <figure class="photo-item">
-    <a href="images/portrait3.jpg" class="lightbox">
-      <img src="images/portrait3.jpg" alt="Child portrait" />
-    </a>
-    <figcaption>Portrait Series｜人像系列 · Childhood gaze</figcaption>
-  </figure>
-
-  <figure class="photo-item">
-    <a href="images/portrait4.jpg" class="lightbox">
-      <img src="images/portrait4.jpg" alt="Atmospheric portrait" />
-    </a>
-    <figcaption>Portrait Series｜人像系列 · Atmospheric frame</figcaption>
-  </figure>
-
-</div>
+    <!-- 相册 3：日常 Daily -->
+    <figure class="photo-item" data-album="daily">
+      <img src="images/portrait3.jpg" alt="Daily life photography" />
+      <figcaption>
+        Daily Moments｜日常影像相册
+      </figcaption>
+    </figure>
+  </div>
 </section>
 
     <!-- About 区域 -->
@@ -190,19 +184,13 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+    <footer class="site-footer">
     <span>© <span id="year"></span> Raymond Zhang</span>
     <span class="footer-dot"></span>
     <span>Built with GitHub Pages</span>
   </footer>
 
-      <footer class="site-footer">
-    <span>© <span id="year"></span> Raymond Zhang</span>
-    <span class="footer-dot"></span>
-    <span>Built with GitHub Pages</span>
-  </footer>
-
-  <!-- 页面动效 + 自制 Lightbox -->
+  <!-- 页面动效 + 相册 Lightbox -->
   <script>
     // 自动显示当前年份
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -220,7 +208,6 @@
       { threshold: 0.15 }
     );
 
-    // 需要出现动效的元素：所有 section 和项目卡片
     const revealEls = document.querySelectorAll(
       'section.section, section.section-alt, .card'
     );
@@ -230,43 +217,103 @@
       observer.observe(el);
     });
 
-    // ===== 简易 Lightbox：点击摄影图片放大，点空白 / ESC 关闭 =====
-    const photoLinks = document.querySelectorAll('.photo-item a');
+    // ===== 相册 Lightbox：三个相册，每个相册多张图，可左右切换 =====
 
-    photoLinks.forEach((link) => {
-      link.addEventListener('click', function (e) {
-        e.preventDefault(); // 阻止打开图片新页面
+    // 这里先用你现有的图片做例子，以后你有更多图可以直接在数组里加
+    const albums = {
+      street: [
+        'images/portrait2.jpg',
+        'images/portrait4.jpg'
+      ],
+      grad: [
+        'images/portrait1.jpg'
+      ],
+      daily: [
+        'images/portrait3.jpg',
+        'images/portrait5.jpg'
+      ]
+    };
 
-        const src = this.getAttribute('href');
+    const albumItems = document.querySelectorAll('.photo-item');
 
-        // 创建全屏遮罩
+    albumItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        const albumKey = item.getAttribute('data-album');
+        const images = albums[albumKey];
+        if (!images || images.length === 0) return;
+
+        let currentIndex = 0;
+
+        // 创建遮罩
         const overlay = document.createElement('div');
         overlay.style.cssText =
-          'position:fixed;inset:0;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out;';
+          'position:fixed;inset:0;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:9999;';
 
-        // 创建大图
+        // 图片容器
         const img = document.createElement('img');
-        img.src = src;
-        img.alt = this.querySelector('img')?.alt || '';
         img.style.cssText =
           'max-width:90vw;max-height:90vh;border-radius:18px;box-shadow:0 20px 80px rgba(0,0,0,0.8);';
+        img.src = images[currentIndex];
 
         overlay.appendChild(img);
-        document.body.appendChild(overlay);
 
-        // 点击遮罩任意空白处关闭
-        overlay.addEventListener('click', () => {
-          overlay.remove();
+        // 左右切换按钮
+        const makeArrow = (side) => {
+          const btn = document.createElement('div');
+          btn.textContent = side === 'left' ? '‹' : '›';
+          btn.style.cssText =
+            'position:absolute;top:50%;' +
+            (side === 'left' ? 'left:32px;' : 'right:32px;') +
+            'transform:translateY(-50%);font-size:40px;color:#fff;cursor:pointer;user-select:none;';
+          return btn;
+        };
+
+        const leftArrow = makeArrow('left');
+        const rightArrow = makeArrow('right');
+
+        overlay.appendChild(leftArrow);
+        overlay.appendChild(rightArrow);
+
+        const showImage = () => {
+          img.src = images[currentIndex];
+        };
+
+        leftArrow.addEventListener('click', (e) => {
+          e.stopPropagation();
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          showImage();
         });
 
-        // ESC 关闭
+        rightArrow.addEventListener('click', (e) => {
+          e.stopPropagation();
+          currentIndex = (currentIndex + 1) % images.length;
+          showImage();
+        });
+
+        // 点击空白关闭
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) {
+            overlay.remove();
+            document.removeEventListener('keydown', escHandler);
+          }
+        });
+
+        // ESC & 方向键
         const escHandler = (ev) => {
           if (ev.key === 'Escape') {
             overlay.remove();
             document.removeEventListener('keydown', escHandler);
+          } else if (ev.key === 'ArrowLeft') {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage();
+          } else if (ev.key === 'ArrowRight') {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage();
           }
         };
         document.addEventListener('keydown', escHandler);
+
+        document.body.appendChild(overlay);
       });
     });
   </script>

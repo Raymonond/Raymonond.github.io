@@ -488,3 +488,116 @@ main {
     height: 190px;
   }
 }
+
+.section-projects {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 5rem;
+}
+
+.section-projects .section-heading {
+  margin-bottom: 3rem;
+}
+
+.section-projects .section-heading h2 {
+  font-size: 0.95rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.section-projects .section-heading p {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* 列表整体：一列居中，日式留白 */
+.projects-list {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* 每个项目像杂志条目 */
+.project-item {
+  padding: 2.7rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.project-tag {
+  font-weight: 500;
+}
+
+.project-year {
+  opacity: 0.8;
+}
+
+/* 标题：英文 + 中文 */
+.project-title {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 0.85rem;
+}
+
+.project-title-cn {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.68);
+}
+
+/* 描述：英文 & 中文 */
+.project-desc,
+.project-desc-cn {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(0, 0, 0, 0.7);
+  max-width: 46rem;
+}
+
+.project-desc-cn {
+  margin-top: 0.4rem;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+/* 查看链接：细小、日式 */
+.project-link {
+  display: inline-block;
+  margin-top: 1.3rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+  padding-bottom: 0.15rem;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.project-link:hover {
+  border-bottom-color: #000;
+  color: #000;
+}
+
+/* 响应式：小屏稍微压紧一点 */
+@media (max-width: 720px) {
+  .section-projects {
+    padding-inline: 1.25rem;
+  }
+  .project-item {
+    padding: 2rem 0;
+  }
+  .project-title {
+    font-size: 1.1rem;
+  }
+}

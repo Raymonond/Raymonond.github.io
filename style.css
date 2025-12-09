@@ -1,395 +1,670 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <title>Raymond Zhang | Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+:root {
+  /* 颜色系统：黑 / 白 / 金 + 暖灰背景 */
+  --bg-page: #f4f2ec;
+  --bg-surface: #ffffff;
+  --bg-hero: #050506;
 
-  <!-- 主样式 -->
-  <link rel="stylesheet" href="style.css" />
+  --text-main: #111111;
+  --text-muted: #747474;
 
-  <!-- 手写风字体（Logo 签名） -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" />
+  --black: #000000;
+  --white: #ffffff;
 
-  <!-- Lightbox CSS & JS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/microlightbox/dist/microlightbox.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/microlightbox/dist/microlightbox.min.js"></script>
-</head>
+  --gold: #c5a76a;
+  --gold-soft: #e3d2a4;
+  --border-subtle: rgba(0, 0, 0, 0.06);
 
-<body id="top">
-  <!-- 顶部导航 -->
-  <header class="site-header" id="navbar">
-    <!-- 签名 Logo -->
-    <a href="#top" class="brand">
-      <span class="brand-script">Raymond Zhang</span>
-      <span class="brand-sub">张鹭依</span>
-    </a>
+  /* 字体系统 */
+  --font-title: "Playfair Display", "Cormorant Garamond", "Times New Roman",
+    serif;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", Roboto, sans-serif;
 
-    <nav class="site-nav">
-      <a href="#projects">Projects</a>
-      <a href="#photo">Photography</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  /* 圆角 & 阴影 */
+  --radius-xl: 26px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
 
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-label">PORTFOLIO</div>
+  --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.06);
+}
 
-        <h1 class="hero-title">
-          RAYMOND<br>
-          ZHANG
-        </h1>
+/* 全局基础 */
 
-        <p class="hero-subtitle">
-          Visual artist & photographer based in Auckland.<br>
-          艺术创作者、摄影与视觉叙事实践者。
-        </p>
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-        <p class="hero-tagline">
-          EXPLORING LIGHT, CITY EMOTIONS, AND TRANSITIONAL SPACES.
-        </p>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
 
-        <div class="hero-footer">
-          <button class="hero-button">
-            SELECTED WORKS · 2020—2025
-          </button>
+body {
+  font-family: var(--font-body);
+  background: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.7;
+}
 
-          <span class="hero-signature">
-            张鹭依 · Luyi Zhang
-          </span>
-        </div>
-      </div>
-    </section>
+/* 布局 */
 
-    <!-- Projects 区域：Editorial + 日式 -->
-    <section id="projects" class="section section-projects">
-      <div class="section-heading">
-        <h2>PROJECTS</h2>
-        <p>三个对我来说最重要的创作阶段 | Three major stages of my artistic practice</p>
-      </div>
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 112px 20px 80px;
+}
 
-      <div class="projects-list">
-        <!-- Early Works -->
-        <article class="project-item">
-          <div class="project-meta">
-            <span class="project-tag">EARLY WORKS</span>
-            <span class="project-year">2017–2020 · Drawing &amp; Illustration</span>
-          </div>
-          <h3 class="project-title">
-            Early Works Portfolio<br>
-            <span class="project-title-cn">早期绘画与角色创作</span>
-          </h3>
-          <p class="project-desc">
-            A collection of early drawings, character designs and observational sketches that
-            formed the foundation of my visual language and the way I approach composition,
-            colour and anatomy.
-          </p>
-          <p class="project-desc-cn">
-            早期的绘画合集，包含角色设定、观察速写与写实练习。通过这些作品建立起对色彩与构图的敏感度，也是之后创作中叙事与人物塑造的基础。
-          </p>
-          <a href="#early-works" class="project-link">View project</a>
-        </article>
+/* 顶部导航 */
 
-        <!-- Graduation -->
-        <article class="project-item">
-          <div class="project-meta">
-            <span class="project-tag">GRADUATION PROJECT · AUCKLAND</span>
-            <span class="project-year">2024 · Installation &amp; Photography</span>
-          </div>
-          <h3 class="project-title">
-            Graduation Project – Auckland<br>
-            <span class="project-title-cn">毕业作品 · 奥克兰</span>
-          </h3>
-          <p class="project-desc">
-            A visual project exploring urban memory, emotions and spatial atmosphere through
-            photography and installation. Part of this work was reposted by Auckland Art Gallery
-            on their official Instagram.
-          </p>
-          <p class="project-desc-cn">
-            通过摄影与装置捕捉城市中的记忆碎片、情绪与空间气氛。作品的一部分曾被奥克兰美术馆官方 Instagram 转发。
-          </p>
-          <a href="#graduation" class="project-link">View project</a>
-        </article>
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
 
-        <!-- Night Walk Series -->
-        <article class="project-item">
-          <div class="project-meta">
-            <span class="project-tag">PHOTOGRAPHY · ONGOING SERIES</span>
-            <span class="project-year">Ongoing · Street &amp; Installation Photography</span>
-          </div>
-          <h3 class="project-title">
-            Night Walk &amp; City Fragments<br>
-            <span class="project-title-cn">夜行与城市碎片</span>
-          </h3>
-          <p class="project-desc">
-            Ongoing photographic series documenting colour, light and fleeting emotions in the
-            city. The works focus on high contrast lighting, minimal compositions and the
-            atmosphere of liminal spaces.
-          </p>
-          <p class="project-desc-cn">
-            持续进行中的摄影系列，以城市中的色块、光线与短暂情绪为主题，透过高对比的光线与极简构图，记录那些介于日常与虚无之间的边界空间。
-          </p>
-          <a href="#night-walk" class="project-link">View project</a>
-        </article>
-      </div>
-    </section>
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    <!-- 摄影区域 -->
-    <section id="photo" class="section section-alt">
-      <div class="section-header">
-        <h2>Portraits & Photography</h2>
-        <p class="section-subtitle">
-          Selected albums｜人像与摄影作品相册
-        </p>
-      </div>
+  backdrop-filter: blur(16px);
+  background: rgba(0, 0, 0, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
-      <div class="photo-grid">
-        <!-- 相册 1：街拍 Street -->
-        <figure class="photo-item" data-album="street">
-          <img src="images/portrait2.jpg" alt="Street photography album cover" />
-          <figcaption>
-            Street Photography｜街拍相册
-          </figcaption>
-        </figure>
+  transition: background 0.36s ease, box-shadow 0.36s ease,
+    border-color 0.36s ease;
+}
 
-        <!-- 相册 2：毕业作品 Graduation -->
-        <figure class="photo-item" data-album="grad">
-          <img src="images/portrait1.jpg" alt="Graduation project documentation" />
-          <figcaption>
-            Graduation Works｜毕业作品相册
-          </figcaption>
-        </figure>
+/* 滚动后：奶白背景 + 阴影 */
+.site-header.scrolled {
+  background: rgba(244, 242, 236, 0.96);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
 
-        <!-- 相册 3：日常 Daily -->
-        <figure class="photo-item" data-album="daily">
-          <img src="images/portrait3.jpg" alt="Daily life photography" />
-          <figcaption>
-            Daily Moments｜日常影像相册
-          </figcaption>
-        </figure>
-      </div>
-    </section>
+/* 品牌 Logo */
 
-    <!-- About 区域 -->
-    <section id="about" class="section">
-      <div class="section-header">
-        <h2>About</h2>
-        <p class="section-subtitle">一些简单的自我介绍</p>
-      </div>
-      <div class="about-layout">
-        <div class="about-text">
-          <p>
-            I am Raymond Zhang, a visual artist and photographer based in Auckland.
-            My practice began with drawing and character design, and gradually transitioned
-            into photography, installation and contemporary visual storytelling.
-            <br><br>
-            我是 Raymond Zhang，居住在奥克兰的艺术创作者与摄影师。
-            起点是绘画与角色设计，后来逐步转向摄影、装置与当代视觉叙事。
-          </p>
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
 
-          <p>
-            My work explores fragments of the city, personal emotion, and the atmosphere of
-            transitional spaces. I use saturated colour, minimal composition and dramatic
-            lighting to capture fleeting moods that might otherwise be overlooked.
-            <br><br>
-            我的创作关注城市碎片、个人情绪与空间氛围，
-            通过高饱和色块与极简构图，把那些城市中稍纵即逝的瞬间凝结成可观看的图像。
-          </p>
-        </div>
-        <ul class="about-list">
-          <li><span class="about-label">Based in</span><span>Auckland, New Zealand</span></li>
-          <li><span class="about-label">Focus</span><span>Photography · Installation · Visual story</span></li>
-          <li><span class="about-label">Languages</span><span>中文 / English</span></li>
-        </ul>
-      </div>
-    </section>
+.brand-script {
+  font-family: "Mrs Saint Delafield", system-ui, -apple-system, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1;
+}
 
-    <!-- Contact 区域 -->
-    <section id="contact" class="section section-alt">
-      <div class="section-header">
-        <h2>Contact</h2>
-        <p class="section-subtitle">欢迎联系合作或交流</p>
-      </div>
-      <div class="contact-block">
-        <p>你可以通过邮箱或社交平台找到我：</p>
-        <ul class="contact-list">
-          <li>Email：<a href="mailto:raymond200061@gmail.com">raymond200061@gmail.com</a></li>
-          <li>
-            Instagram：
-            <a href="https://www.instagram.com/raymomond061/" target="_blank">
-              @raymomond061
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
-  </main>
+.brand-sub {
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
 
-  <footer class="site-footer">
-    <span>© <span id="year"></span> Raymond Zhang</span>
-    <span class="footer-dot"></span>
-    <span>Built with GitHub Pages</span>
-  </footer>
+/* 顶部透明时：Logo 白色；滚动后：深色 */
 
-  <!-- 页面动效 + 相册 Lightbox + 导航滚动高亮 -->
-  <script>
-    // 当前年份
-    document.getElementById('year').textContent = new Date().getFullYear();
+.site-header:not(.scrolled) .brand-script,
+.site-header:not(.scrolled) .brand-sub {
+  color: #f8f8f8;
+}
 
-    // 滚动出现动效：section & project-item 淡入上浮
-    const observer = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
+.site-header.scrolled .brand-script,
+.site-header.scrolled .brand-sub {
+  color: #111111;
+}
 
-    const revealEls = document.querySelectorAll(
-      'section.section, section.section-alt, .project-item'
-    );
+/* 导航链接 */
 
-    revealEls.forEach((el) => {
-      el.classList.add('reveal');
-      observer.observe(el);
-    });
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
 
-    // 相册 Lightbox：三个相册，每个相册多张图，可左右切换
-    const albums = {
-      street: [
-        'images/portrait2.jpg',
-        'images/portrait4.jpg'
-      ],
-      grad: [
-        'images/portrait1.jpg'
-      ],
-      daily: [
-        'images/portrait3.jpg',
-        'images/portrait5.jpg'
-      ]
-    };
+.site-nav a {
+  font-size: 13px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+}
 
-    const albumItems = document.querySelectorAll('.photo-item');
+/* 初始：顶部时白字 */
+.site-header:not(.scrolled) .site-nav a {
+  color: rgba(255, 255, 255, 0.78);
+}
 
-    albumItems.forEach((item) => {
-      item.addEventListener('click', () => {
-        const albumKey = item.getAttribute('data-album');
-        const images = albums[albumKey];
-        if (!images || images.length === 0) return;
+/* 滚动后：灰字 */
+.site-header.scrolled .site-nav a {
+  color: var(--text-muted);
+}
 
-        let currentIndex = 0;
+/* 下划线基础 */
 
-        const overlay = document.createElement('div');
-        overlay.style.cssText =
-          'position:fixed;inset:0;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:9999;';
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 0;
+  height: 1.5px;
+  background: var(--gold);
+  transition: width 0.24s ease;
+}
 
-        const img = document.createElement('img');
-        img.style.cssText =
-          'max-width:90vw;max-height:90vh;border-radius:18px;box-shadow:0 20px 80px rgba(0,0,0,0.8);';
-        img.src = images[currentIndex];
-        overlay.appendChild(img);
+.site-nav a:hover::after {
+  width: 100%;
+}
 
-        const makeArrow = (side) => {
-          const btn = document.createElement('div');
-          btn.textContent = side === 'left' ? '‹' : '›';
-          btn.style.cssText =
-            'position:absolute;top:50%;' +
-            (side === 'left' ? 'left:32px;' : 'right:32px;') +
-            'transform:translateY(-50%);font-size:40px;color:#fff;cursor:pointer;user-select:none;';
-          return btn;
-        };
+/* hover 颜色 */
 
-        const leftArrow = makeArrow('left');
-        const rightArrow = makeArrow('right');
-        overlay.appendChild(leftArrow);
-        overlay.appendChild(rightArrow);
+.site-header:not(.scrolled) .site-nav a:hover {
+  color: var(--white);
+}
 
-        const showImage = () => {
-          img.src = images[currentIndex];
-        };
+.site-header.scrolled .site-nav a:hover {
+  color: var(--text-main);
+}
 
-        leftArrow.addEventListener('click', (e) => {
-          e.stopPropagation();
-          currentIndex = (currentIndex - 1 + images.length) % images.length;
-          showImage();
-        });
+/* 当前所在 section 对应的导航项 */
 
-        rightArrow.addEventListener('click', (e) => {
-          e.stopPropagation();
-          currentIndex = (currentIndex + 1) % images.length;
-          showImage();
-        });
+.site-nav a.active::after {
+  width: 100%;
+  background: var(--gold);
+}
 
-        overlay.addEventListener('click', (e) => {
-          if (e.target === overlay) {
-            overlay.remove();
-            document.removeEventListener('keydown', escHandler);
-          }
-        });
+.site-header.scrolled .site-nav a.active,
+.site-header:not(.scrolled) .site-nav a.active {
+  color: var(--gold);
+}
 
-        const escHandler = (ev) => {
-          if (ev.key === 'Escape') {
-            overlay.remove();
-            document.removeEventListener('keydown', escHandler);
-          } else if (ev.key === 'ArrowLeft') {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            showImage();
-          } else if (ev.key === 'ArrowRight') {
-            currentIndex = (currentIndex + 1) % images.length;
-            showImage();
-          }
-        };
-        document.addEventListener('keydown', escHandler);
+/* Hero 区域 */
 
-        document.body.appendChild(overlay);
-      });
-    });
+.hero {
+  margin-top: 32px;
+  padding: 0 0 24px;
+  display: flex;
+  justify-content: center;
+}
 
-    // 导航：滚动变色 + 当前 section 高亮
-    const navbar = document.getElementById("navbar");
-    const navLinks = document.querySelectorAll(".site-nav a");
+.hero-inner {
+  width: 100%;
+  max-width: 960px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(197, 167, 106, 0.32), transparent 55%),
+    radial-gradient(circle at 110% 120%, rgba(255, 255, 255, 0.08), transparent 60%),
+    linear-gradient(135deg, #111119, #050506);
+  border-radius: 32px;
+  padding: 3.5rem 3.5rem 2.8rem;
+  color: var(--white);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.65);
 
-    const sections = Array.from(navLinks)
-      .map((link) => {
-        const id = link.getAttribute("href").slice(1);
-        const section = document.getElementById(id);
-        return { link, section };
-      })
-      .filter(item => item.section);
+  opacity: 0;
+  transform: translateY(16px);
+  animation: hero-fade-in 0.52s ease-out forwards;
+  animation-delay: 0.08s;
+}
 
-    function handleScroll() {
-      // 导航滚动变色
-      if (window.scrollY > 40) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
+.hero-label {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 12px;
+}
 
-      // 当前 section 高亮
-      const scrollPos = window.scrollY + 120;
+/* 大标题 */
 
-      sections.forEach(({ link, section }) => {
-        const top = section.offsetTop;
-        const bottom = top + section.offsetHeight;
+.hero-title {
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: clamp(34px, 5vw, 52px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+  line-height: 1.15;
+}
 
-        if (scrollPos >= top && scrollPos < bottom) {
-          link.classList.add("active");
-        } else {
-          link.classList.remove("active");
-        }
-      });
-    }
+/* 副标题：中英 */
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("load", handleScroll);
-  </script>
-</body>
-</html>
+.hero-subtitle {
+  margin: 0 0 6px;
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+/* Tagline 胶囊 */
+
+.hero-tagline {
+  align-self: flex-start;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 8px 18px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  background: linear-gradient(
+    90deg,
+    rgba(197, 167, 106, 0.36),
+    rgba(255, 255, 255, 0.06)
+  );
+  margin-top: 1rem;
+}
+
+/* Hero 底部按钮 + 签名 */
+
+.hero-footer {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.hero-button {
+  border: 1px solid rgba(200, 169, 106, 0.7);
+  background: linear-gradient(135deg, rgba(200, 169, 106, 0.16), rgba(0, 0, 0, 0.2));
+  color: var(--white);
+  padding: 0.75rem 1.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: transform 180ms ease-out, box-shadow 180ms ease-out,
+    background 200ms ease-out;
+}
+
+.hero-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45);
+  background: linear-gradient(135deg, rgba(200, 169, 106, 0.4), rgba(0, 0, 0, 0.4));
+}
+
+.hero-signature {
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(230, 230, 230, 0.76);
+}
+
+/* Hero 动画 */
+
+@keyframes hero-fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 通用 section 样式 */
+
+.section {
+  margin-top: 48px;
+  padding: 32px 26px 30px;
+  border-radius: var(--radius-xl);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+}
+
+.section-alt {
+  margin-top: 48px;
+  padding: 32px 26px 30px;
+  border-radius: var(--radius-xl);
+  background: #111111;
+  color: rgba(245, 245, 245, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.65);
+}
+
+.section-header {
+  margin-bottom: 24px;
+}
+
+.section h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.section-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.section-alt .section-subtitle {
+  color: rgba(230, 230, 230, 0.72);
+}
+
+/* Projects：Editorial 风 */
+
+.section-projects {
+  max-width: 1080px;
+  margin: 3rem auto 0;
+  padding: 4rem 1.5rem 5rem;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+}
+
+.section-projects .section-heading {
+  margin-bottom: 3rem;
+}
+
+.section-projects .section-heading h2 {
+  font-size: 0.95rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.section-projects .section-heading p {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.projects-list {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* 每个项目 */
+
+.project-item {
+  padding: 2.7rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.6s ease;
+}
+
+.project-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.project-tag {
+  font-weight: 500;
+}
+
+.project-year {
+  opacity: 0.8;
+}
+
+.project-title {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 0.85rem;
+}
+
+.project-title-cn {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.68);
+}
+
+.project-desc,
+.project-desc-cn {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(0, 0, 0, 0.7);
+  max-width: 46rem;
+}
+
+.project-desc-cn {
+  margin-top: 0.4rem;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+.project-link {
+  display: inline-block;
+  margin-top: 1.3rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+  padding-bottom: 0.15rem;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.project-link:hover {
+  border-bottom-color: #000;
+  color: #000;
+}
+
+/* 摄影相册区域 */
+
+.section-alt#photo {
+  background: #151515;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.7);
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.photo-item {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #050505;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.photo-item img {
+  display: block;
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  filter: saturate(1.05);
+}
+
+.photo-item figcaption {
+  padding: 10px 12px 12px;
+  font-size: 12px;
+  color: rgba(245, 245, 245, 0.9);
+}
+
+.photo-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
+  border-color: rgba(197, 167, 106, 0.8);
+}
+
+/* About 区域 */
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  gap: 28px;
+}
+
+.about-text p {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.about-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.about-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Contact 区域 */
+
+.section-alt#contact {
+  background: #111111;
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.7);
+}
+
+.contact-block {
+  padding: 8px 0 0;
+  font-size: 14px;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 8px 0 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-list a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.contact-list a:hover {
+  border-bottom-color: var(--gold);
+}
+
+/* 页脚 */
+
+.site-footer {
+  max-width: 960px;
+  margin: 26px auto 26px;
+  padding: 0 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  color: var(--text-muted);
+}
+
+.footer-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--text-muted);
+}
+
+/* reveal 动效 */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 响应式 */
+
+@media (max-width: 900px) {
+  main {
+    padding-top: 96px;
+  }
+
+  .site-header {
+    padding-inline: 18px;
+  }
+
+  .hero-inner {
+    padding: 2.6rem 1.9rem 2.4rem;
+  }
+
+  .section,
+  .section-alt {
+    padding-inline: 20px;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-nav {
+    display: none; /* 暂时简单处理：小屏直接上下滑动 */
+  }
+
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-item img {
+    height: 190px;
+  }
+
+  .section-projects {
+    padding-inline: 1.25rem;
+  }
+
+  .project-item {
+    padding: 2rem 0;
+  }
+
+  .project-title {
+    font-size: 1.1rem;
+  }
+}

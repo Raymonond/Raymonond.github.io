@@ -107,6 +107,37 @@ main {
   color: var(--text-muted);
 }
 
+/* —— 在这里之后加入 active 样式 —— */
+
+/* 当前所在 section 对应的导航项 */
+.site-nav a.active::after {
+  width: 100%;
+}
+
+/* 下划线展开（黄金下划线） */
+.site-nav a.active::after {
+  width: 100%;
+  background: var(--gold);   /* 确保是金色 */
+}
+
+/* 在滚动后（白色导航背景）激活项变金色 */
+.site-header.scrolled .site-nav a.active {
+  color: var(--gold);
+}
+
+/* 在首页顶部（透明导航、白字）激活项也变金色 */
+.site-header:not(.scrolled) .site-nav a.active {
+  color: var(--gold);
+}
+
+.site-header.scrolled .site-nav a.active {
+  color: var(--gold);
+}
+
+.site-header:not(.scrolled) .site-nav a.active {
+  color: var(--gold);
+}
+
 .site-nav a::after {
   content: "";
   position: absolute;

@@ -173,13 +173,12 @@
       <span class="brand-sub">张鹭依</span>
     </a>
 
-    <nav class="site-nav">
-      <a href="#work">Projects</a>
-      <a href="#photo">Photography</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+   <nav class="site-nav">
+  <a href="#projects">Projects</a>
+  <a href="#photo">Photography</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</nav>
 
   <main>
    <section class="hero">
@@ -364,8 +363,13 @@
       <div class="contact-block">
         <p>你可以通过邮箱或社交平台找到我：</p>
         <ul class="contact-list">
-          <li>Email：<a href="mailto:raymond200061@gmail.com">raymond200061@gmail.com/a></li>
-          <li>Instagram：<span>@raymomond061_instagram</span></li>
+          <li>Email：<a href="mailto:raymond200061@gmail.com">raymond200061@gmail.com</a></li>
+          <li>
+  Instagram：
+  <a href="https://www.instagram.com/raymomond061/" target="_blank">
+    @raymomond061
+  </a>
+</li>
         </ul>
       </div>
     </section>
@@ -495,16 +499,44 @@
       });
     });
   </script>
-  <script>
+<script>
   const navbar = document.getElementById("navbar");
+  const navLinks = document.querySelectorAll(".site-nav a");
 
-  window.addEventListener("scroll", () => {
+  // 找到每个导航对应的 section
+  const sections = Array.from(navLinks)
+    .map((link) => {
+      const id = link.getAttribute("href").slice(1); // 去掉 #
+      const section = document.getElementById(id);
+      return { link, section };
+    })
+    .filter(item => item.section);
+
+  function handleScroll() {
+    // 1) 导航滚动变色
     if (window.scrollY > 40) {
       navbar.classList.add("scrolled");
     } else {
       navbar.classList.remove("scrolled");
     }
-  });
+
+    // 2) 当前 section 高亮导航
+    const scrollPos = window.scrollY + 120;
+
+    sections.forEach(({ link, section }) => {
+      const top = section.offsetTop;
+      const bottom = top + section.offsetHeight;
+
+      if (scrollPos >= top && scrollPos < bottom) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", handleScroll);
+  window.addEventListener("load", handleScroll);
 </script>
 </body>
 </html>
